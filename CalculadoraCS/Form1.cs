@@ -100,6 +100,7 @@ namespace CalculadoraCS
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
+            DeleteChar();
         }
 
         private void BtnDot_Click(object sender, EventArgs e)
@@ -127,37 +128,81 @@ namespace CalculadoraCS
             LblDisplay.Text += text;
         }
 
+        private void AddSign(string sign)
+        {
+            if(sign == "+" || sign == "-")
+            {
+                LblDisplay.Text = sign;
+                calculadora.AddNumber(sign);
+            }
+        }
+
         private void AddOperation(string text)
         {
-            string operation = calculadora.AddOperation(text);
+            if (LblDisplay.Text == "")
+            {
+                AddSign(text);
+                return;
+            }
+                string operation = calculadora.AddOperation(text);
             if (LblDisplay.Text != "" && LblDisplay.Text[0] != 'E' && LblDisplay.Text[0] != 'I')
             {
                 LblAux.Text += operation;
             }
-            if (LblAux.Text != "" && LblAux.Text.Length > 1)
+            if (LblAux.Text != "" && LblAux.Text.Length > 0)
             {
-                int index = LblAux.Text.Length - 1;
-                switch (LblAux.Text[index])
-                {
-                    case '+':
-                        LblAux.Text = LblAux.Text.Remove(index);
-                        LblAux.Text += operation;
-                        break;
-                    case '-':
-                        LblAux.Text = LblAux.Text.Remove(index);
-                        LblAux.Text += operation;
-                        break;
-                    case '*':
-                        LblAux.Text = LblAux.Text.Remove(index);
-                        LblAux.Text += operation;
-                        break;
-                    case '/':
-                        LblAux.Text = LblAux.Text.Remove(index);
-                        LblAux.Text += operation;
-                        break;
-                }
+                LblAux.Text = ChangeOperation(LblAux.Text, operation);
             }
             LblDisplay.Text = "";
+        }
+
+        private string ChangeOperation(string Field, string newOperation)
+        {
+            int index = Field.Length - 1;
+            switch (Field[index])
+            {
+                case '+':
+                    Field = Field.Remove(index);
+                    Field += newOperation;
+                    break;
+                case '-':
+                    Field = Field.Remove(index);
+                    Field += newOperation;
+                    break;
+                case '*':
+                    Field = Field.Remove(index);
+                    Field += newOperation;
+                    break;
+                case '/':
+                    Field = Field.Remove(index);
+                    Field += newOperation;
+                    break;
+            }
+            return Field;
+        }
+
+        private void DeleteChar()
+        {
+            if (LblDisplay.Text != "")
+            {
+                LblDisplay.Text = LblDisplay.Text.Remove(LblDisplay.Text.Length - 1);
+                calculadora.DeleteChar();
+            }
+        }
+
+        private void ShowN1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(calculadora.GetN1());
+        }
+
+        private void ShowN2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(calculadora.GetN2());
+        }
+
+        private void ShowOp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(calculadora.GetOp());
         }
     }
 }

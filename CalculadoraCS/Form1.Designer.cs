@@ -30,6 +30,8 @@ namespace CalculadoraCS
         private void InitializeComponent()
         {
             this.GBoxCalculadora = new System.Windows.Forms.GroupBox();
+            this.ShowN2 = new System.Windows.Forms.Button();
+            this.ShowN1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.LblAux = new System.Windows.Forms.Label();
             this.LblDisplay = new System.Windows.Forms.Label();
@@ -52,6 +54,7 @@ namespace CalculadoraCS
             this.Btn7 = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnClear = new System.Windows.Forms.Button();
+            this.ShowOp = new System.Windows.Forms.Button();
             this.GBoxCalculadora.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +62,9 @@ namespace CalculadoraCS
             // GBoxCalculadora
             // 
             this.GBoxCalculadora.BackColor = System.Drawing.SystemColors.Control;
+            this.GBoxCalculadora.Controls.Add(this.ShowOp);
+            this.GBoxCalculadora.Controls.Add(this.ShowN2);
+            this.GBoxCalculadora.Controls.Add(this.ShowN1);
             this.GBoxCalculadora.Controls.Add(this.panel1);
             this.GBoxCalculadora.Controls.Add(this.BtnEnter);
             this.GBoxCalculadora.Controls.Add(this.BtnPlus);
@@ -87,6 +93,26 @@ namespace CalculadoraCS
             this.GBoxCalculadora.TabStop = false;
             this.GBoxCalculadora.Text = "Calculadora em C#";
             // 
+            // ShowN2
+            // 
+            this.ShowN2.Location = new System.Drawing.Point(524, 94);
+            this.ShowN2.Name = "ShowN2";
+            this.ShowN2.Size = new System.Drawing.Size(75, 45);
+            this.ShowN2.TabIndex = 4;
+            this.ShowN2.Text = "N2";
+            this.ShowN2.UseVisualStyleBackColor = true;
+            this.ShowN2.Click += new System.EventHandler(this.ShowN2_Click);
+            // 
+            // ShowN1
+            // 
+            this.ShowN1.Location = new System.Drawing.Point(524, 43);
+            this.ShowN1.Name = "ShowN1";
+            this.ShowN1.Size = new System.Drawing.Size(75, 45);
+            this.ShowN1.TabIndex = 3;
+            this.ShowN1.Text = "N1";
+            this.ShowN1.UseVisualStyleBackColor = true;
+            this.ShowN1.Click += new System.EventHandler(this.ShowN1_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -102,9 +128,10 @@ namespace CalculadoraCS
             // 
             this.LblAux.AutoSize = true;
             this.LblAux.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LblAux.Location = new System.Drawing.Point(228, -8);
+            this.LblAux.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LblAux.Location = new System.Drawing.Point(-1, -1);
             this.LblAux.Name = "LblAux";
-            this.LblAux.Size = new System.Drawing.Size(2, 39);
+            this.LblAux.Size = new System.Drawing.Size(2, 27);
             this.LblAux.TabIndex = 1;
             // 
             // LblDisplay
@@ -116,6 +143,7 @@ namespace CalculadoraCS
             this.LblDisplay.Name = "LblDisplay";
             this.LblDisplay.Size = new System.Drawing.Size(0, 54);
             this.LblDisplay.TabIndex = 0;
+            this.LblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // BtnEnter
             // 
@@ -307,6 +335,16 @@ namespace CalculadoraCS
             this.BtnClear.UseVisualStyleBackColor = true;
             this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
+            // ShowOp
+            // 
+            this.ShowOp.Location = new System.Drawing.Point(524, 164);
+            this.ShowOp.Name = "ShowOp";
+            this.ShowOp.Size = new System.Drawing.Size(75, 47);
+            this.ShowOp.TabIndex = 5;
+            this.ShowOp.Text = "Op";
+            this.ShowOp.UseVisualStyleBackColor = true;
+            this.ShowOp.Click += new System.EventHandler(this.ShowOp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -348,6 +386,9 @@ namespace CalculadoraCS
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label LblDisplay;
         private System.Windows.Forms.Label LblAux;
+        private System.Windows.Forms.Button ShowN2;
+        private System.Windows.Forms.Button ShowN1;
+        private System.Windows.Forms.Button ShowOp;
     }
 }
 

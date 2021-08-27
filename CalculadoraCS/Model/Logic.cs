@@ -80,10 +80,36 @@ namespace CalculadoraCS.Model
             return Result.ToString();
         }
 
+        public void DeleteChar()
+        {
+            if (Field != "")
+            {
+                Field = Field.Remove(Field.Length - 1);
+            }
+        }
+
         public void Clear()
         {
             HasOperation = false;
             Field = "";
+            Number1 = 0;
+            Number2 = 0;
+            Operation = "";
+        }
+
+        public string GetN1()
+        {
+            return Number1.ToString();
+        }
+
+        public string GetN2()
+        {
+            return Number2.ToString();
+        }
+
+        public string GetOp()
+        {
+            return Operation;
         }
     }
 }
