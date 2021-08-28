@@ -161,6 +161,10 @@ namespace CalculadoraCS
             {
                 LblDisplay.Text = LblDisplay.Text.Remove(LblDisplay.Text.Length - 1);
                 calculadora.DeleteChar();
+                if(LblDisplay.Text != "")
+                {
+                    AdaptDots();
+                }
             }
         }
 
@@ -174,8 +178,7 @@ namespace CalculadoraCS
         private void AdaptDots()
         {
             string number = LblDisplay.Text;
-            if (number.Contains(',') || number.Contains('e')
-                || number.Contains('E'))
+            if (number.Contains('e') || number.Contains('E'))
             {
                 return;
             }
@@ -184,6 +187,12 @@ namespace CalculadoraCS
             {
                 hasSignal = true;
                 number = number.Replace('-', ' ').Replace('+', ' ').TrimStart();
+            }
+            string afterConma = "";
+            if (number.Contains(','))
+            {
+                afterConma = number.Substring(number.IndexOf(','));
+                number = number.Remove(number.IndexOf(','));
             }
             while (number.Contains('.'))
             {
@@ -210,6 +219,7 @@ namespace CalculadoraCS
             {
                 LblDisplay.Text = number;
             }
+            LblDisplay.Text += afterConma;
         }
 
         private bool IsSign(char position)

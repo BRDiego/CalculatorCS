@@ -319,7 +319,7 @@ namespace CalculadoraCS
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(146, 69);
             this.BtnDelete.TabIndex = 2;
-            this.BtnDelete.Text = "Del";
+            this.BtnDelete.Text = "Delete";
             this.BtnDelete.UseVisualStyleBackColor = true;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
@@ -329,7 +329,7 @@ namespace CalculadoraCS
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.Size = new System.Drawing.Size(145, 69);
             this.BtnClear.TabIndex = 2;
-            this.BtnClear.Text = "C";
+            this.BtnClear.Text = "Clear";
             this.BtnClear.UseVisualStyleBackColor = true;
             this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
