@@ -30,6 +30,7 @@ namespace CalculadoraCS
         private void InitializeComponent()
         {
             this.GBoxCalculadora = new System.Windows.Forms.GroupBox();
+            this.ShowOp = new System.Windows.Forms.Button();
             this.ShowN2 = new System.Windows.Forms.Button();
             this.ShowN1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -39,7 +40,6 @@ namespace CalculadoraCS
             this.BtnPlus = new System.Windows.Forms.Button();
             this.BtnMinus = new System.Windows.Forms.Button();
             this.BtnMultiply = new System.Windows.Forms.Button();
-            this.BtnDot = new System.Windows.Forms.Button();
             this.Btn3 = new System.Windows.Forms.Button();
             this.Btn6 = new System.Windows.Forms.Button();
             this.Btn9 = new System.Windows.Forms.Button();
@@ -54,7 +54,6 @@ namespace CalculadoraCS
             this.Btn7 = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnClear = new System.Windows.Forms.Button();
-            this.ShowOp = new System.Windows.Forms.Button();
             this.GBoxCalculadora.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +69,6 @@ namespace CalculadoraCS
             this.GBoxCalculadora.Controls.Add(this.BtnPlus);
             this.GBoxCalculadora.Controls.Add(this.BtnMinus);
             this.GBoxCalculadora.Controls.Add(this.BtnMultiply);
-            this.GBoxCalculadora.Controls.Add(this.BtnDot);
             this.GBoxCalculadora.Controls.Add(this.Btn3);
             this.GBoxCalculadora.Controls.Add(this.Btn6);
             this.GBoxCalculadora.Controls.Add(this.Btn9);
@@ -92,6 +90,16 @@ namespace CalculadoraCS
             this.GBoxCalculadora.TabIndex = 0;
             this.GBoxCalculadora.TabStop = false;
             this.GBoxCalculadora.Text = "Calculadora em C#";
+            // 
+            // ShowOp
+            // 
+            this.ShowOp.Location = new System.Drawing.Point(524, 164);
+            this.ShowOp.Name = "ShowOp";
+            this.ShowOp.Size = new System.Drawing.Size(75, 47);
+            this.ShowOp.TabIndex = 5;
+            this.ShowOp.Text = "Op";
+            this.ShowOp.UseVisualStyleBackColor = true;
+            this.ShowOp.Click += new System.EventHandler(this.ShowOp_Click);
             // 
             // ShowN2
             // 
@@ -119,9 +127,9 @@ namespace CalculadoraCS
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.LblAux);
             this.panel1.Controls.Add(this.LblDisplay);
-            this.panel1.Location = new System.Drawing.Point(122, 91);
+            this.panel1.Location = new System.Drawing.Point(122, 94);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(381, 66);
+            this.panel1.Size = new System.Drawing.Size(381, 78);
             this.panel1.TabIndex = 1;
             // 
             // LblAux
@@ -139,17 +147,18 @@ namespace CalculadoraCS
             this.LblDisplay.AutoSize = true;
             this.LblDisplay.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.LblDisplay.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LblDisplay.Location = new System.Drawing.Point(-1, 11);
+            this.LblDisplay.Location = new System.Drawing.Point(-2, 24);
             this.LblDisplay.Name = "LblDisplay";
-            this.LblDisplay.Size = new System.Drawing.Size(0, 54);
+            this.LblDisplay.Size = new System.Drawing.Size(45, 54);
             this.LblDisplay.TabIndex = 0;
+            this.LblDisplay.Text = "0";
             this.LblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // BtnEnter
             // 
-            this.BtnEnter.Location = new System.Drawing.Point(406, 352);
+            this.BtnEnter.Location = new System.Drawing.Point(311, 435);
             this.BtnEnter.Name = "BtnEnter";
-            this.BtnEnter.Size = new System.Drawing.Size(97, 134);
+            this.BtnEnter.Size = new System.Drawing.Size(192, 69);
             this.BtnEnter.TabIndex = 2;
             this.BtnEnter.Text = "=";
             this.BtnEnter.UseVisualStyleBackColor = true;
@@ -157,7 +166,7 @@ namespace CalculadoraCS
             // 
             // BtnPlus
             // 
-            this.BtnPlus.Location = new System.Drawing.Point(406, 287);
+            this.BtnPlus.Location = new System.Drawing.Point(406, 370);
             this.BtnPlus.Name = "BtnPlus";
             this.BtnPlus.Size = new System.Drawing.Size(97, 69);
             this.BtnPlus.TabIndex = 2;
@@ -167,7 +176,7 @@ namespace CalculadoraCS
             // 
             // BtnMinus
             // 
-            this.BtnMinus.Location = new System.Drawing.Point(406, 220);
+            this.BtnMinus.Location = new System.Drawing.Point(406, 305);
             this.BtnMinus.Name = "BtnMinus";
             this.BtnMinus.Size = new System.Drawing.Size(97, 69);
             this.BtnMinus.TabIndex = 2;
@@ -177,7 +186,7 @@ namespace CalculadoraCS
             // 
             // BtnMultiply
             // 
-            this.BtnMultiply.Location = new System.Drawing.Point(406, 153);
+            this.BtnMultiply.Location = new System.Drawing.Point(406, 238);
             this.BtnMultiply.Name = "BtnMultiply";
             this.BtnMultiply.Size = new System.Drawing.Size(97, 69);
             this.BtnMultiply.TabIndex = 2;
@@ -185,19 +194,9 @@ namespace CalculadoraCS
             this.BtnMultiply.UseVisualStyleBackColor = true;
             this.BtnMultiply.Click += new System.EventHandler(this.BtnMultiply_Click);
             // 
-            // BtnDot
-            // 
-            this.BtnDot.Location = new System.Drawing.Point(311, 417);
-            this.BtnDot.Name = "BtnDot";
-            this.BtnDot.Size = new System.Drawing.Size(97, 69);
-            this.BtnDot.TabIndex = 2;
-            this.BtnDot.Text = ".";
-            this.BtnDot.UseVisualStyleBackColor = true;
-            this.BtnDot.Click += new System.EventHandler(this.BtnDot_Click);
-            // 
             // Btn3
             // 
-            this.Btn3.Location = new System.Drawing.Point(311, 352);
+            this.Btn3.Location = new System.Drawing.Point(311, 370);
             this.Btn3.Name = "Btn3";
             this.Btn3.Size = new System.Drawing.Size(97, 69);
             this.Btn3.TabIndex = 2;
@@ -207,7 +206,7 @@ namespace CalculadoraCS
             // 
             // Btn6
             // 
-            this.Btn6.Location = new System.Drawing.Point(311, 287);
+            this.Btn6.Location = new System.Drawing.Point(311, 305);
             this.Btn6.Name = "Btn6";
             this.Btn6.Size = new System.Drawing.Size(97, 69);
             this.Btn6.TabIndex = 2;
@@ -217,7 +216,7 @@ namespace CalculadoraCS
             // 
             // Btn9
             // 
-            this.Btn9.Location = new System.Drawing.Point(311, 220);
+            this.Btn9.Location = new System.Drawing.Point(311, 238);
             this.Btn9.Name = "Btn9";
             this.Btn9.Size = new System.Drawing.Size(97, 69);
             this.Btn9.TabIndex = 2;
@@ -227,7 +226,7 @@ namespace CalculadoraCS
             // 
             // BtnDivide
             // 
-            this.BtnDivide.Location = new System.Drawing.Point(311, 153);
+            this.BtnDivide.Location = new System.Drawing.Point(406, 171);
             this.BtnDivide.Name = "BtnDivide";
             this.BtnDivide.Size = new System.Drawing.Size(97, 69);
             this.BtnDivide.TabIndex = 2;
@@ -237,7 +236,7 @@ namespace CalculadoraCS
             // 
             // BtnConma
             // 
-            this.BtnConma.Location = new System.Drawing.Point(217, 417);
+            this.BtnConma.Location = new System.Drawing.Point(217, 435);
             this.BtnConma.Name = "BtnConma";
             this.BtnConma.Size = new System.Drawing.Size(97, 69);
             this.BtnConma.TabIndex = 2;
@@ -247,7 +246,7 @@ namespace CalculadoraCS
             // 
             // Btn0
             // 
-            this.Btn0.Location = new System.Drawing.Point(122, 417);
+            this.Btn0.Location = new System.Drawing.Point(122, 435);
             this.Btn0.Name = "Btn0";
             this.Btn0.Size = new System.Drawing.Size(97, 69);
             this.Btn0.TabIndex = 2;
@@ -257,7 +256,7 @@ namespace CalculadoraCS
             // 
             // Btn2
             // 
-            this.Btn2.Location = new System.Drawing.Point(217, 352);
+            this.Btn2.Location = new System.Drawing.Point(217, 370);
             this.Btn2.Name = "Btn2";
             this.Btn2.Size = new System.Drawing.Size(97, 69);
             this.Btn2.TabIndex = 2;
@@ -267,7 +266,7 @@ namespace CalculadoraCS
             // 
             // Btn1
             // 
-            this.Btn1.Location = new System.Drawing.Point(122, 352);
+            this.Btn1.Location = new System.Drawing.Point(122, 370);
             this.Btn1.Name = "Btn1";
             this.Btn1.Size = new System.Drawing.Size(97, 69);
             this.Btn1.TabIndex = 2;
@@ -277,7 +276,7 @@ namespace CalculadoraCS
             // 
             // Btn5
             // 
-            this.Btn5.Location = new System.Drawing.Point(217, 287);
+            this.Btn5.Location = new System.Drawing.Point(217, 305);
             this.Btn5.Name = "Btn5";
             this.Btn5.Size = new System.Drawing.Size(97, 69);
             this.Btn5.TabIndex = 2;
@@ -287,7 +286,7 @@ namespace CalculadoraCS
             // 
             // Btn4
             // 
-            this.Btn4.Location = new System.Drawing.Point(122, 287);
+            this.Btn4.Location = new System.Drawing.Point(122, 305);
             this.Btn4.Name = "Btn4";
             this.Btn4.Size = new System.Drawing.Size(97, 69);
             this.Btn4.TabIndex = 2;
@@ -297,7 +296,7 @@ namespace CalculadoraCS
             // 
             // Btn8
             // 
-            this.Btn8.Location = new System.Drawing.Point(217, 220);
+            this.Btn8.Location = new System.Drawing.Point(217, 238);
             this.Btn8.Name = "Btn8";
             this.Btn8.Size = new System.Drawing.Size(97, 69);
             this.Btn8.TabIndex = 2;
@@ -307,7 +306,7 @@ namespace CalculadoraCS
             // 
             // Btn7
             // 
-            this.Btn7.Location = new System.Drawing.Point(122, 220);
+            this.Btn7.Location = new System.Drawing.Point(122, 238);
             this.Btn7.Name = "Btn7";
             this.Btn7.Size = new System.Drawing.Size(97, 69);
             this.Btn7.TabIndex = 2;
@@ -317,9 +316,9 @@ namespace CalculadoraCS
             // 
             // BtnDelete
             // 
-            this.BtnDelete.Location = new System.Drawing.Point(217, 153);
+            this.BtnDelete.Location = new System.Drawing.Point(262, 171);
             this.BtnDelete.Name = "BtnDelete";
-            this.BtnDelete.Size = new System.Drawing.Size(97, 69);
+            this.BtnDelete.Size = new System.Drawing.Size(146, 69);
             this.BtnDelete.TabIndex = 2;
             this.BtnDelete.Text = "Del";
             this.BtnDelete.UseVisualStyleBackColor = true;
@@ -327,23 +326,13 @@ namespace CalculadoraCS
             // 
             // BtnClear
             // 
-            this.BtnClear.Location = new System.Drawing.Point(122, 153);
+            this.BtnClear.Location = new System.Drawing.Point(122, 171);
             this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(97, 69);
+            this.BtnClear.Size = new System.Drawing.Size(145, 69);
             this.BtnClear.TabIndex = 2;
             this.BtnClear.Text = "C";
             this.BtnClear.UseVisualStyleBackColor = true;
             this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
-            // 
-            // ShowOp
-            // 
-            this.ShowOp.Location = new System.Drawing.Point(524, 164);
-            this.ShowOp.Name = "ShowOp";
-            this.ShowOp.Size = new System.Drawing.Size(75, 47);
-            this.ShowOp.TabIndex = 5;
-            this.ShowOp.Text = "Op";
-            this.ShowOp.UseVisualStyleBackColor = true;
-            this.ShowOp.Click += new System.EventHandler(this.ShowOp_Click);
             // 
             // Form1
             // 
@@ -368,7 +357,6 @@ namespace CalculadoraCS
         private System.Windows.Forms.Button BtnPlus;
         private System.Windows.Forms.Button BtnMinus;
         private System.Windows.Forms.Button BtnMultiply;
-        private System.Windows.Forms.Button BtnDot;
         private System.Windows.Forms.Button Btn3;
         private System.Windows.Forms.Button Btn6;
         private System.Windows.Forms.Button Btn9;

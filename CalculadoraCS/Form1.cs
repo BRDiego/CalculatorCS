@@ -103,12 +103,12 @@ namespace CalculadoraCS
             DeleteChar();
         }
 
-        private void BtnDot_Click(object sender, EventArgs e)
-        {
-        }
-
         private void BtnConma_Click(object sender, EventArgs e)
         {
+            if (!(LblDisplay.Text.Contains(",")))
+            {
+                AddNumber(BtnConma.Text);
+            }
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
