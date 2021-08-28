@@ -26,6 +26,7 @@ namespace CalculadoraCS
             {
                 LblAux.Text = LblDisplay.Text;
             }
+            AdaptDots();
         }
 
         private void Btn0_Click(object sender, EventArgs e)
@@ -126,6 +127,7 @@ namespace CalculadoraCS
                 LblDisplay.Text = "";
             }
             LblDisplay.Text += text;
+            AdaptDots();
         }
 
         private void AddSign(string sign)
@@ -144,7 +146,8 @@ namespace CalculadoraCS
                 AddSign(text);
                 return;
             }
-                string operation = calculadora.AddOperation(text);
+
+            string operation = calculadora.AddOperation(text);
             if (LblDisplay.Text != "" && LblDisplay.Text[0] != 'E' && LblDisplay.Text[0] != 'I')
             {
                 LblAux.Text += operation;
@@ -187,6 +190,47 @@ namespace CalculadoraCS
             {
                 LblDisplay.Text = LblDisplay.Text.Remove(LblDisplay.Text.Length - 1);
                 calculadora.DeleteChar();
+            }
+        }
+
+        private void AdaptDots()
+        {
+            string number = LblDisplay.Text;
+            if (number.Contains(',') || number.Contains('e')
+                || number.Contains('E'))
+            {
+                return;
+            }
+            bool hasSignal = false;
+            if (number[0] == '-' || number[0] == '+')
+            {
+                hasSignal = true;
+                number = number.Replace('-', ' ').Replace('+', ' ').TrimStart();
+            }
+            while (number.Contains('.'))
+            {
+                int index = number.IndexOf('.');
+                number = number.Remove(index, 1);
+            }
+            if(number.Length > 3)
+            {
+                int position = number.Length - 3;
+                string aux;
+                for (; position >= 1; position -= 3)
+                {
+                    aux = number.Substring(position);
+                    number = number.Insert(position, ".")
+                        .Remove(position + 1);
+                    number = number + aux;
+                }
+            }
+            if (hasSignal)
+            {
+                LblDisplay.Text = LblDisplay.Text[0] + number;
+            }
+            else
+            {
+                LblDisplay.Text = number;
             }
         }
 
