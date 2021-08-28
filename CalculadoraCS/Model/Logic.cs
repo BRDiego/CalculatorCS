@@ -14,7 +14,7 @@ namespace CalculadoraCS.Model
         public string Operation { get; set; }
         public double Result { get; set; }
         private string Field;
-        private bool HasOperation { get; set; }
+        public bool HasOperation { get; private set; }
         private bool HasConma;
 
 
@@ -23,9 +23,10 @@ namespace CalculadoraCS.Model
         {
         }
 
-        public void AddNumber(string number)
+        public string AddNumber(string number)
         {
-                Field += number;
+            Field += number;
+            return Field.ToString();
         }
         //FAZER FUNÇÃO QUE RECEBE STRING E PASSA PRO CALCULO E PRO DISPLAY
 
@@ -33,25 +34,35 @@ namespace CalculadoraCS.Model
         {
             if (Field != null && Field != "")
             {
-                Number1 = double.Parse(Field);
+                try
+                {
+                    Number1 = double.Parse(Field);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Números ausentes\nOperação alterada");
+                }
             }
-                Operation = operation;
-                Field = "";
+            Operation = operation;
+            Field = "";
             if (HasOperation)
             {
-                return Operation;
+                return Number1.ToString() + Operation;
             }
-                HasOperation = true;
-                return Operation;
+            HasOperation = true;
+            return Number1.ToString() + Operation;
         }
 
         public string Calculate()
         {
-            if(Field == "")
+            if(Field == "" || Field == null)
             {
                 return "Insira um número";
             }
-            Number2 = double.Parse(Field);
+            else
+            {
+                Number2 = double.Parse(Field);
+            }
             switch (Operation)
             {
                 case "+":

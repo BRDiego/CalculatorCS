@@ -121,67 +121,46 @@ namespace CalculadoraCS
 
         private void AddNumber(string text)
         {
-            calculadora.AddNumber(text);
             if ((LblDisplay.Text != "") && (LblDisplay.Text[0] == 'E' || LblDisplay.Text[0] == 'I'))
             {
                 LblDisplay.Text = "";
             }
-            LblDisplay.Text += text;
+            LblDisplay.Text = calculadora.AddNumber(text);
             AdaptDots();
         }
 
         private void AddSign(string sign)
         {
-            if(sign == "+" || sign == "-")
-            {
-                LblDisplay.Text = sign;
-                calculadora.AddNumber(sign);
-            }
+            LblDisplay.Text = sign;
+            calculadora.AddNumber(sign);
         }
 
         private void AddOperation(string text)
         {
-            if (LblDisplay.Text == "")
+            if (LblDisplay.Text == "" && LblAux.Text != ""
+                && IsSign(LblAux.Text[LblAux.Text.Length - 1]))
             {
+                if (!LblAux.Text.EndsWith(text))
+                {
+                    LblAux.Text.Remove(LblAux.Text.Length - 1);
+                }
+            }
+            if (LblDisplay.Text == "" && text != "*" && text !="/")
+            {
+                //trocar o sign faz o aux ficar poluido. arrumar isso
                 AddSign(text);
                 return;
             }
-
-            string operation = calculadora.AddOperation(text);
-            if (LblDisplay.Text != "" && LblDisplay.Text[0] != 'E' && LblDisplay.Text[0] != 'I')
+            LblAux.Text = calculadora.AddOperation(text);
+            LblDisplay.Text = "";
+            /*if (LblDisplay.Text != "" && LblDisplay.Text[0] != 'E' && LblDisplay.Text[0] != 'I')
             {
                 LblAux.Text += operation;
             }
-            if (LblAux.Text != "" && LblAux.Text.Length > 0)
+            if (!calculadora.HasOperation)
             {
-                LblAux.Text = ChangeOperation(LblAux.Text, operation);
-            }
-            LblDisplay.Text = "";
-        }
-
-        private string ChangeOperation(string Field, string newOperation)
-        {
-            int index = Field.Length - 1;
-            switch (Field[index])
-            {
-                case '+':
-                    Field = Field.Remove(index);
-                    Field += newOperation;
-                    break;
-                case '-':
-                    Field = Field.Remove(index);
-                    Field += newOperation;
-                    break;
-                case '*':
-                    Field = Field.Remove(index);
-                    Field += newOperation;
-                    break;
-                case '/':
-                    Field = Field.Remove(index);
-                    Field += newOperation;
-                    break;
-            }
-            return Field;
+                LblAux.Text = ChangeOperation();
+            }*/
         }
 
         private void DeleteChar()
@@ -231,6 +210,23 @@ namespace CalculadoraCS
             else
             {
                 LblDisplay.Text = number;
+            }
+        }
+
+        private bool IsSign(char position)
+        {
+            switch (position)
+            {
+                case '+':
+                    return true;
+                case '-':
+                    return true;
+                case '*':
+                    return true;
+                case '/':
+                    return true;
+                default:
+                    return false;
             }
         }
 

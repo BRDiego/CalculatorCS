@@ -149,9 +149,8 @@ namespace CalculadoraCS
             this.LblDisplay.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LblDisplay.Location = new System.Drawing.Point(-2, 24);
             this.LblDisplay.Name = "LblDisplay";
-            this.LblDisplay.Size = new System.Drawing.Size(45, 54);
+            this.LblDisplay.Size = new System.Drawing.Size(0, 54);
             this.LblDisplay.TabIndex = 0;
-            this.LblDisplay.Text = "0";
             this.LblDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // BtnEnter
