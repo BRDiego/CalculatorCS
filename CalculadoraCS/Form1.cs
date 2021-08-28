@@ -142,25 +142,17 @@ namespace CalculadoraCS
             {
                 if (!LblAux.Text.EndsWith(text))
                 {
-                    LblAux.Text.Remove(LblAux.Text.Length - 1);
+                    ChangeOperation(text);
+                    return;
                 }
             }
             if (LblDisplay.Text == "" && text != "*" && text !="/")
             {
-                //trocar o sign faz o aux ficar poluido. arrumar isso
                 AddSign(text);
                 return;
             }
             LblAux.Text = calculadora.AddOperation(text);
             LblDisplay.Text = "";
-            /*if (LblDisplay.Text != "" && LblDisplay.Text[0] != 'E' && LblDisplay.Text[0] != 'I')
-            {
-                LblAux.Text += operation;
-            }
-            if (!calculadora.HasOperation)
-            {
-                LblAux.Text = ChangeOperation();
-            }*/
         }
 
         private void DeleteChar()
@@ -170,6 +162,13 @@ namespace CalculadoraCS
                 LblDisplay.Text = LblDisplay.Text.Remove(LblDisplay.Text.Length - 1);
                 calculadora.DeleteChar();
             }
+        }
+
+        private void ChangeOperation(string operation)
+        {
+            LblAux.Text.Remove(LblAux.Text.Length - 1);
+            LblAux.Text = calculadora.AddOperation(operation);
+            LblDisplay.Text = "";
         }
 
         private void AdaptDots()

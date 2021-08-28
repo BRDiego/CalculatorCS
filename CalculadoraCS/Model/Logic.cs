@@ -40,7 +40,7 @@ namespace CalculadoraCS.Model
                 }
                 catch (FormatException)
                 {
-                    MessageBox.Show("Números ausentes\nOperação alterada");
+                    MessageBox.Show("Operação alterada\nInsira números");
                 }
             }
             Operation = operation;
